@@ -58,6 +58,14 @@ function Container:size()
     return self.size
 end
 
+function Container:pushItem(other, from, to)
+    self.peripheral.pushItems(peripheral.getName(other), from, 64, to)
+end
+
+function Container:getItemDetail(slot)
+    return self.peripheral.getItemDetail(slot)
+end
+
 function Container:new(peripheral)
     
     -- wtf?
@@ -72,6 +80,7 @@ function Container:new(peripheral)
     return obj
 end
 
+-- integrators
 
 attackPiston = Integrator:new(peripheral.wrap("redstoneIntegrator_11"), "back", false) -- piston for the attack deployer
 usePiston = Integrator:new(peripheral.wrap("redstoneIntegrator_7"), "back", false) -- piston for the use deployer
@@ -81,6 +90,7 @@ deployerTrigger = Integrator:new(peripheral.wrap("redstoneIntegrator_10"), "bott
 funnel = Integrator:new(peripheral.wrap("redstoneIntegrator_9"), "bottom", false)  -- trigs the funnel
 outputBufferSend = Integrator:new(peripheral.wrap("redstoneIntegrator_8"), "front", true) -- trig the sending of item from output buffer
 
+-- containers
 
 recipeChest = Container:new(peripheral.wrap("barrel_2"))
 outputBuffer = Container:new(peripheral.wrap("barrel_1"))
@@ -88,11 +98,18 @@ outputBuffer = Container:new(peripheral.wrap("barrel_1"))
 returnHopper = Container:new(peripheral.wrap("hopper_0"))
 giveHopper = Container:new(peripheral.wrap("hopper_1"))
 
+-- init
+
 modem = peripheral.wrap("top")
 channel = 5
 modem.open(channel)
 
 checkSlotIDs = {1,2,3,10,11,12,19,20,21}
+slotToCraft = { -- index based map of what slot to where in the "crafter"
+    {1, 1},
+
+
+}
 
 function transmitMessage(message)
     modem.transmit(channel, channel, message)
@@ -100,16 +117,19 @@ end
 
 function checkForMessageEvent()
     local event, side, recivedChannel, requestChannel, message, distance = os.pullEvent("modem_message")
-    return(message)
+    return message
 end
 
 
 --check items in choosen slots 
 function gridContents(slot)
-    local items = recipeChest.list()
-    for i=1
-        
+    local newItems = {}
+
+
+    for i=1,9 do 
+        recipeChest.getItemDetail
     end
+    return newItems
 end
 
 
