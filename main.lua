@@ -68,6 +68,8 @@ function Integrator:new(peripheral, side, defaultVal)
     return obj
 end
 
+Container = {}
+
 function Container:list()
     return self.peripheral.list()
 end
