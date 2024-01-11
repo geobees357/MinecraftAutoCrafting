@@ -22,8 +22,8 @@ end
 Integrator = {}
 
 function Integrator:set(val)
-    
-    assert(self:defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
+
+    --assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
     if val then
         self.peripheral.setOutput(self.side, val)
     else
@@ -33,13 +33,13 @@ function Integrator:set(val)
 end
 
 function Integrator:reset()
-    assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
+    --assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
     self.peripheral.setOutput(self.side, false)
     sleepTick()
 end
 
 function Integrator:pulse()
-    assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
+    --assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
     self.set(not self.defaultVal)
     sleepTick() -- one redstone tick, should be enough?
     self.set(self.defaultVal)
@@ -47,7 +47,7 @@ function Integrator:pulse()
 end
 
 function Integrator:get() -- not actually needed anymore,, but yea
-    assert(self.defaultVal == nil, "defaultVal was not nil, and needs to be for a input integrator!")
+    --assert(self.defaultVal == nil, "defaultVal was not nil, and needs to be for a input integrator!")
     return self.peripheral.getInput(self.side)
 end
 
