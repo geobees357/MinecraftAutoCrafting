@@ -155,20 +155,18 @@ end
 
 --check items in choosen slots 
 function gridContents()
-    local newItems = {}
+    local newItems = {{"","",""},{"","",""},{"","",""}}
     for i=1,9 do 
-        table.insert(newItems, recipeChest.getItemDetail(checkSlotIDs[i]))
+        newItems[math.ceil(i/3)][i%3] = recipeChest.getItemDetail(checkSlotIDs[i])
     end
     return newItems
 end
 
 function constructTable(list)
     local nList = {{false,false,false},{false,false,false},{false,false,false}}
-    for i=1,3 do
-        for e=1,3 do
-            if list[i][e] == nil then
-                nList[i][e] = true
-            end
+    for i=1,9 do
+        if list[i] == nil then
+            nList[math.ceil(i/3)][i%3] = true
         end
     end
     return nList
@@ -181,7 +179,7 @@ end
 
 function main()
 
-
+    checkSendWait()
 
 end
 
