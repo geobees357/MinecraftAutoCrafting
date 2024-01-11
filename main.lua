@@ -5,7 +5,9 @@
 goofy ahh computer waits for a redstone signal, GRABS THE GIT REPO, AND EXECS THE STRING AS CODE???!
 fucking dumb.
 when getting in the thing,,, make sure to have ? and then the time so things are unique and the cache doesnt fuck us?
-    
+
+obj:func() is SO STUPID.
+
 --]]
 
 
