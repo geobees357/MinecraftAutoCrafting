@@ -10,20 +10,36 @@ fucking dumb.
 
 --print("bruh?")
 
+function sleepTick(val)
+    -- goofy ahh default param    val = val or 1
+    sleep(val * 0.1)
+end
+
 Integrator = {}
 
 function Integrator:set(val)
     assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
-    self.peripheral.setOutput(self.side, val)
+    if val then
+        self.peripheral.setOutput(self.side, val)
+        return nil -- just in case lua doesnt all    elsef.peripheral.setOutput(self.side, true)
+end
+    
+    end
+    sleepTick()
+function Integrator:reset()
+    assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
+    self.peripheral.setOutput(self.side, false)
 end
 
+    sleepTick()
 function Integrator:pulse()
     assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
-    self.set(not self.defaultVal)
+    self.set(not self.defaultValf
     sleep(0.1) -- one redstone tick, should be enough?
-    self.set(self.defaultVal)
+    sleepTick()elf.defaultVal))
 end
 
+    sleepTick()
 function Integrator:get() -- not actually needed anymore,, but yea
     assert(self.defaultVal == nil, "defaultVal was not nil, and needs to be for a input integrator!")
     return self.peripheral.getInput(self.side)
@@ -63,7 +79,13 @@ function Container:pushItem(other, from, to)
 end
 
 function Container:getItemDetail(slot)
-    return self.peripheral.getItemDetail(slot)
+    local temp = self.peripheral.getItemDetail(slot)
+    
+    if temp then
+       return temp.name 
+    end
+    
+    return nil
 end
 
 function Container:new(peripheral)
@@ -105,11 +127,21 @@ channel = 5
 modem.open(channel)
 
 checkSlotIDs = {1,2,3,10,11,12,19,20,21}
-slotToCraft = { -- index based map of what slot to where in the "crafter"
-    {1, 1},
 
+function trigDeployer(piston) -- trigs the deployer (assuming ones currently there)
+    piston.set()
+    deployerTrigger.pulse()
+    sleep(3) -- is this a good amount of time?
+    piston.reset()
+end
 
-}
+function doAttack() -- does a round of the attack deployer
+    trigDeployer(attackPiston)
+end
+
+function doUse() -- does a round of the use deployer
+    trigDeployer(usePiston)
+end
 
 function transmitMessage(message)
     modem.transmit(channel, channel, message)
@@ -122,17 +154,30 @@ end
 
 
 --check items in choosen slots 
-function gridContents(slot)
+function gridContents()
     local newItems = {}
-
-
     for i=1,9 do 
-        recipeChest.getItemDetail
+        table.insert(newItems, recipeChest.getItemDetail(checkSlotIDs[i]))
     end
     return newItems
 end
 
+function constructTable(list)
+    local nList = {{false,false,false},{false,false,false},{false,false,false}}
+    for i=1,3 do
+        for e=1,3 do
+            if list[i][e] == nil then
+                nList[i][e] = true
+            end
+        end
+    end
+    return nList
+end
 
+function checkSendWait()
+    transmitMessage(constructTable(gridContents()))
+    print(checkForMessageEvent())
+end
 
 function main()
 
@@ -143,6 +188,7 @@ end
 while true do 
     main()
 end
+
 
 
 
