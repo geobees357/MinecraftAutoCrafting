@@ -11,7 +11,8 @@ fucking dumb.
 --print("bruh?")
 
 function sleepTick(val)
-    -- goofy ahh default param    val = val or 1
+    -- goofy ahh default param
+    val = val or 1
     sleep(val * 0.1)
 end
 
@@ -21,25 +22,26 @@ function Integrator:set(val)
     assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
     if val then
         self.peripheral.setOutput(self.side, val)
-        return nil -- just in case lua doesnt all    elsef.peripheral.setOutput(self.side, true)
-end
-    
+    else
+        self.peripheral.setOutput(self.side, true)
     end
     sleepTick()
+end
+
 function Integrator:reset()
     assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
     self.peripheral.setOutput(self.side, false)
+    sleepTick()
 end
 
-    sleepTick()
 function Integrator:pulse()
     assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
-    self.set(not self.defaultValf
-    sleep(0.1) -- one redstone tick, should be enough?
-    sleepTick()elf.defaultVal))
+    self.set(not self.defaultVal)
+    sleepTick() -- one redstone tick, should be enough?
+    self.set(self.defaultVal)
+    sleepTick()
 end
 
-    sleepTick()
 function Integrator:get() -- not actually needed anymore,, but yea
     assert(self.defaultVal == nil, "defaultVal was not nil, and needs to be for a input integrator!")
     return self.peripheral.getInput(self.side)
