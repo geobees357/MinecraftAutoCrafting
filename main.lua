@@ -78,6 +78,7 @@ function Integrator:new(peripheral, side, defaultVal)
 
     -- setup
     if defaultVal then
+        print(self)
         self.set(self.defaultVal)
     end
 
