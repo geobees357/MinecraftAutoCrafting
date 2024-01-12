@@ -29,8 +29,8 @@ Integrator = {}
 function Integrator:set(val)
     --assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
 
-    print("self:", self)
-    print("self.device:", self.device)
+    --print("self:", self)
+    --print("self.device:", self.device)
 
 
     if val then
@@ -119,7 +119,11 @@ function Container:new(device)
     -- wtf?
     --local obj = {}
     --setmetatable(obj, self)
-    local obj = setmetatable({}, self)
+    --local obj = setmetatable({}, self)
+    --self.__index = self
+
+    obj = {}
+    setmetatable(obj, self)
     self.__index = self
 
     -- define vars
