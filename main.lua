@@ -160,6 +160,10 @@ function errorChat(s)
     error(s)
 end
 
+-- lamp
+
+lampWrite = Integrator:new("right", "right", false)
+lampRead = Integrator:new("right", "right", nil)
 
 -- integrators
 
@@ -268,7 +272,7 @@ function craft()
         end
         sleep(0.05)
     end
-    
+
     if res == nil then
         errorChat("craft failed somehow? fric!")
     end
@@ -333,11 +337,24 @@ end
 
 function main()
 
+    local lampStatus = lampRead.get()
+
+    assert(lampStatus ~= nil, "lampstatus was nill?? asdhjfklhsjfshlaf")
+
+    if lampStatus == false then
+        whlie true do
+            os.pullEvent("redstone")
+            if rs.getInput("right") then
+                break
+            end
+        end
+    end
+
+    lampWrite.set()
     checkSendWait()
-
-
     craft()
-
+    lampWrite.reset()
+    sleepTick()
 
 end
 
@@ -347,8 +364,6 @@ while true do
     if not success then
         print("FUCK: " .. error_message)
     end
-
-    break
 end
 
 
