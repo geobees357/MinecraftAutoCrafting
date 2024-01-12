@@ -233,6 +233,7 @@ function checkSendWait()
                 write("_")
             end
         write("\n")
+        end
     end
 
     transmitMessage(temp)
