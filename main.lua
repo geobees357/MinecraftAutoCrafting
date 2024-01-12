@@ -231,7 +231,14 @@ function getItem(slot)
 
     sleep(0.1)
 
-    local res = returnHopper:getItemDetail(1)
+    res = returnHopper:getItemDetail(1)
+    for i=1,100 do
+        res = returnHopper:getItemDetail(1)
+        if res ~= nil then
+            break
+        end
+        sleep(0.05)
+    end
 
     if res == nil then
         errorChat("returnHopper unable to get an item! fric!")
