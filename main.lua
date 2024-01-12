@@ -79,7 +79,8 @@ function Integrator:new(peripheral, side, defaultVal)
     -- setup
     if defaultVal then
         print(self)
-        self.set(self.defaultVal)
+        --self.set(self.defaultVal)
+        self.peripheral.setOutput(self.side, true)
     end
 
     return obj
