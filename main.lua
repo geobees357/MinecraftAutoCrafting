@@ -92,7 +92,7 @@ function Integrator:new(device, side, defaultVal)
         self:set(self.defaultVal)
     end
 
-    return obj
+    return self 
 end
 
 Container = {}
