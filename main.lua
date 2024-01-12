@@ -260,10 +260,15 @@ function craft()
 
     -- crafting will just,,, occur over here automatically??
 
-    sleep(2)
-
     local res = outputBuffer:getItemDetail(1)
-
+    for i=1,1000 do
+        res = outputBuffer:getItemDetail(1)
+        if res ~= nil then
+            break
+        end
+        sleep(0.05)
+    end
+    
     if res == nil then
         errorChat("craft failed somehow? fric!")
     end
