@@ -70,7 +70,7 @@ function Integrator:new(device, side, defaultVal)
     --setmetatable(obj, self)
     --local obj = setmetatable({}, self)
     --self.__index = self
-    obj = {}
+    local  obj = {}
     setmetatable(obj, self)
     self.__index = self
 
@@ -127,7 +127,7 @@ function Container:new(device)
     --local obj = setmetatable({}, self)
     --self.__index = self
 
-    obj = {}
+    local obj = {}
     setmetatable(obj, self)
     self.__index = self
 
