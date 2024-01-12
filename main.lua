@@ -157,14 +157,13 @@ assert(chatBox ~= nil, "the fucking chatBox_0 be null du,basdfhsujifksdghasidfol
 
 function chat(s)
     chatBox.sendMessage(s, "autocrafter")
-    sleepTick(1)
+    sleep(1)
 end
 
 
 function errorChat(s)
-    sleepTick(1)
+    sleep(1)
     chatBox.sendMessage(s, "autocrafter")
-    sleepTick(1)
     error(s)
 end
 
