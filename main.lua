@@ -27,20 +27,18 @@ end
 Integrator = {}
 
 function Integrator:set(val)
-    print("self:", self)
-    print("Debug: peripheral =", self.peripheral, "side =", self.side)
     --assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
     if val then
         self.peripheral.setOutput(self.side, val)
     else
-        self.peripheral.setOutput(self.side, true)
+        self.device.setOutput(self.side, true)
     end
     sleepTick()
 end
 
 function Integrator:reset()
     --assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
-    self.peripheral.setOutput(self.side, false)
+    self.device.setOutput(self.side, false)
     sleepTick()
 end
 
@@ -54,11 +52,11 @@ end
 
 function Integrator:get() -- not actually needed anymore,, but yea
     --assert(self.defaultVal == nil, "defaultVal was not nil, and needs to be for a input integrator!")
-    return self.peripheral.getInput(self.side)
+    return self.device.getInput(self.side)
 end
 
 -- defaultVal is the default value. pass in NIL if this is an input
-function Integrator:new(peripheral, side, defaultVal)
+function Integrator:new(device, side, defaultVal)
     
     -- wtf?
     --local obj = {}
@@ -69,18 +67,17 @@ function Integrator:new(peripheral, side, defaultVal)
     setmetatable(obj, self)
     self.__index = self
 
-    assert(peripheral ~= nil, "the fucking perirejasfdi be null du,basdfhsujifksdghasidfol ui")
-
     -- define vars
-    self.peripheral = peripheral
+    self.device = peripheral.wrap(device)
+    
+    assert(self.device ~= nil, "the fucking perirejasfdi be null du,basdfhsujifksdghasidfol ui")
+
     self.side = side 
     self.defaultVal = defaultVal
 
     -- setup
     if defaultVal then
-        print(self)
-        --self.set(self.defaultVal)
-        self.peripheral.setOutput(self.side, true)
+        self.set(self.defaultVal)
     end
 
     return obj
@@ -89,7 +86,7 @@ end
 Container = {}
 
 function Container:list()
-    return self.peripheral.list()
+    return self.device.list()
 end
 
 function Container:size()
@@ -97,11 +94,11 @@ function Container:size()
 end
 
 function Container:pushItem(other, from, to)
-    self.peripheral.pushItems(peripheral.getName(other), from, 64, to)
+    self.device.pushItems(peripheral.getName(other.device), from, 64, to)
 end
 
 function Container:getItemDetail(slot)
-    local temp = self.peripheral.getItemDetail(slot)
+    local temp = self.device.getItemDetail(slot)
     
     if temp then
        return temp.name 
@@ -110,7 +107,7 @@ function Container:getItemDetail(slot)
     return nil
 end
 
-function Container:new(peripheral)
+function Container:new(device)
     
     -- wtf?
     --local obj = {}
@@ -118,32 +115,33 @@ function Container:new(peripheral)
     local obj = setmetatable({}, self)
     self.__index = self
 
-    assert(peripheral ~= nil, "the fucking contiainer be null du,basdfhsujifksdghasidfol ui")
+    
 
     -- define vars
-    self.peripheral = peripheral
-    self.size = peripheral.size()
+    self.device = peripheral.wrap(device)
+    assert(device ~= nil, "the fucking contiainer be null du,basdfhsujifksdghasidfol ui")
+    self.size = self.device.size()
 
     return obj
 end
 
 -- integrators
 
-attackPiston = Integrator:new(peripheral.wrap("redstoneIntegrator_11"), "back", false) -- piston for the attack deployer
-usePiston = Integrator:new(peripheral.wrap("redstoneIntegrator_7"), "back", false) -- piston for the use deployer
+attackPiston = Integrator:new("redstoneIntegrator_11"), "back", false) -- piston for the attack deployer
+usePiston = Integrator:new("redstoneIntegrator_7", "back", false) -- piston for the use deployer
 
-deployerTrigger = Integrator:new(peripheral.wrap("redstoneIntegrator_10"), "bottom", true) -- redstone for triging the deployer
+deployerTrigger = Integrator:new("redstoneIntegrator_10", "bottom", true) -- redstone for triging the deployer
 
-funnel = Integrator:new(peripheral.wrap("redstoneIntegrator_9"), "bottom", false)  -- trigs the funnel
-outputBufferSend = Integrator:new(peripheral.wrap("redstoneIntegrator_8"), "front", true) -- trig the sending of item from output buffer
+funnel = Integrator:new("redstoneIntegrator_9", "bottom", false)  -- trigs the funnel
+outputBufferSend = Integrator:new("redstoneIntegrator_8", "front", true) -- trig the sending of item from output buffer
 
 -- containers
 
-recipeChest = Container:new(peripheral.wrap("barrel_2"))
-outputBuffer = Container:new(peripheral.wrap("barrel_1"))
+recipeChest = Container:new("barrel_2")
+outputBuffer = Container:new("barrel_1")
 
-returnHopper = Container:new(peripheral.wrap("hopper_0"))
-giveHopper = Container:new(peripheral.wrap("hopper_1"))
+returnHopper = Container:new("hopper_0")
+giveHopper = Container:new("hopper_1")
 
 -- init
 
