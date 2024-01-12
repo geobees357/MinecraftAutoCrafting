@@ -342,7 +342,7 @@ function main()
     assert(lampStatus ~= nil, "lampstatus was nill?? asdhjfklhsjfshlaf")
 
     if lampStatus == false then
-        whlie true do
+        while true do
             os.pullEvent("redstone")
             if rs.getInput("right") then
                 break
