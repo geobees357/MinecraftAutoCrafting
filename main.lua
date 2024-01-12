@@ -163,7 +163,7 @@ function doAttack() -- does a round of the attack deployer
 end
 
 function doUse() -- does a round of the use deployer
-    trigDeployer(usePiston)
+    trigDeployer(usePiston) 
 end
 
 function transmitMessage(message)
