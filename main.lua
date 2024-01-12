@@ -142,11 +142,11 @@ outputBufferSend = Integrator:new("redstoneIntegrator_8", "front", true) -- trig
 
 -- containers
 
-recipeChest = Container:new("barrel_2")
-outputBuffer = Container:new("barrel_1")
+recipeChest = Container:new("minecraft:barrel_2")
+outputBuffer = Container:new("minecraft:barrel_1")
 
-returnHopper = Container:new("hopper_0")
-giveHopper = Container:new("hopper_1")
+returnHopper = Container:new("minecraft:hopper_0")
+giveHopper = Container:new("minecraft:hopper_1")
 
 -- init
 
