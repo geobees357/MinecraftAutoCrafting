@@ -212,9 +212,14 @@ function getItem(slot)
 
     funnel:pulse()
 
-    sleep(0.5)
-
     local res = recipeBuffer:getItemDetail(1)
+    for i=1,100 do
+        res = recipeBuffer:getItemDetail(1)
+        if res ~= nil then
+            break
+        end
+        sleep(0.05)
+    end
 
     if res == nil then
         errorChat("funnel was unable to get an item! fric!")
