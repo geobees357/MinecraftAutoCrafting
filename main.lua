@@ -212,7 +212,7 @@ function getItem(slot)
 
     funnel:pulse()
 
-    sleep(0.1)
+    sleep(0.3)
 
     local res = recipeBuffer:getItemDetail(1)
 
