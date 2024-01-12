@@ -52,9 +52,9 @@ end
 
 function Integrator:pulse()
     --assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
-    self.set(not self.defaultVal)
+    self:set(not self.defaultVal)
     sleepTick() -- one redstone tick, should be enough?
-    self.set(self.defaultVal)
+    self:set(self.defaultVal)
     sleepTick()
 end
 
