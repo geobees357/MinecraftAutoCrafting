@@ -53,9 +53,9 @@ end
 function Integrator:pulse()
     --assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
     self:set(not self.defaultVal)
-    sleepTick() -- one redstone tick, should be enough?
+    sleepTick(2) -- one redstone tick, should be enough?
     self:set(self.defaultVal)
-    sleepTick()
+    sleepTick(2)
 end
 
 function Integrator:get() -- not actually needed anymore,, but yea
@@ -196,7 +196,7 @@ checkSlotIDs = {{1,10,19},{2,11,20},{3,12,21}}
 function trigDeployer(piston) -- trigs the deployer (assuming ones currently there)
     piston:set()
     deployerTrigger:pulse()
-    sleep(1) -- is this a good amount of time?
+    sleep(0.5) -- is this a good amount of time?
     piston:reset()
 end
 
