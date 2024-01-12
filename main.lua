@@ -88,10 +88,8 @@ function Integrator:new(device, side, defaultVal)
     self.defaultVal = defaultVal
 
     -- setup
-    if defaultVal then
-        self:set(self.defaultVal)
-    end
-
+    self:set(self.defaultVal)
+    
     return self 
 end
 
