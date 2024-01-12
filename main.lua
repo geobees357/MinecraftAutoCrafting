@@ -89,6 +89,9 @@ function Integrator:new(device, side, defaultVal)
 
     -- setup
     self:set(self.defaultVal)
+
+    assert(type(self.device) == type({}), "WHAT THE FUCK" .. device)
+
     
     return self 
 end
