@@ -206,6 +206,7 @@ function gridContents()
     for i=1,9 do 
         newItems[math.ceil(i/3)][(i%3) + 1] = recipeChest:getItemDetail(checkSlotIDs[i])
     end
+    print(pairs(checkSlotIDs), newItems)
     return newItems
 end
 
