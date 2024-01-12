@@ -55,8 +55,9 @@ end
 function Integrator:new(peripheral, side, defaultVal)
     
     -- wtf?
-    local obj = {}
-    setmetatable(obj, self)
+    --ocal obj = {}
+    --setmetatable(obj, self)
+    local obj = setmetatable({}, self)
     self.__index = self
 
     -- define vars
@@ -99,8 +100,9 @@ end
 function Container:new(peripheral)
     
     -- wtf?
-    local obj = {}
-    setmetatable(obj, self)
+    --local obj = {}
+    --setmetatable(obj, self)
+    local obj = setmetatable({}, self)
     self.__index = self
 
     -- define vars
