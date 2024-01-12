@@ -359,7 +359,9 @@ function main()
     --checkSendWait()
     --craft()
 
-    chat("sleeping")
+    chat("sleeping1")
+    chat("sleeping2")
+    chat("sleeping3")
     sleep(5)
     chat("done sleeping")
     
