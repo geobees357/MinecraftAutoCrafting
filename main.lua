@@ -26,6 +26,8 @@ end
 
 Integrator = {}
 
+local Integrator_mt = { __index = Integrator }
+
 function Integrator:set(val)
     --assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
 
@@ -70,9 +72,11 @@ function Integrator:new(device, side, defaultVal)
     --setmetatable(obj, self)
     --local obj = setmetatable({}, self)
     --self.__index = self
-    local  obj = {}
-    setmetatable(obj, self)
-    self.__index = self
+    --local  obj = {}
+    --setmetatable(obj, self)
+    --self.__index = self
+
+    local self = setmetatable({}, Integrator_mt)
 
     -- define vars
     self.device = peripheral.wrap(device)
@@ -93,6 +97,8 @@ function Integrator:new(device, side, defaultVal)
 end
 
 Container = {}
+
+local Container_mt = { __index = Container }
 
 function Container:list()
     return self.device.list()
@@ -127,9 +133,11 @@ function Container:new(device)
     --local obj = setmetatable({}, self)
     --self.__index = self
 
-    local obj = {}
-    setmetatable(obj, self)
-    self.__index = self
+    --local obj = {}
+    --setmetatable(obj, self)
+    --self.__index = self
+
+    local self = setmetatable({}, Container_mt)
 
     self.deviceName = device
 
@@ -138,7 +146,7 @@ function Container:new(device)
     assert(self.device ~= nil, "the fucking contiainer be null du,basdfhsujifksdghasidfol ui " .. device)
     self.size = self.device.size()
 
-    return obj
+    return self
 end
 
 -- integrators
