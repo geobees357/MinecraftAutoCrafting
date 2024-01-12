@@ -157,11 +157,14 @@ assert(chatBox ~= nil, "the fucking chatBox_0 be null du,basdfhsujifksdghasidfol
 
 function chat(s)
     chatBox.sendMessage(s, "autocrafter")
+    sleepTick(1)
 end
 
 
 function errorChat(s)
+    sleepTick(1)
     chatBox.sendMessage(s, "autocrafter")
+    sleepTick(1)
     error(s)
 end
 
@@ -345,7 +348,7 @@ function main()
     chat("waiting for high on right")
     while true do
         if rs.getInput("right") == true then
-            chat("got high on right")
+            chat("got high on right")        
             break
         end
         sleep(0.1)
