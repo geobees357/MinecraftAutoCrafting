@@ -155,6 +155,11 @@ end
 chatBox = peripheral.wrap("chatBox_0")
 assert(chatBox ~= nil, "the fucking chatBox_0 be null du,basdfhsujifksdghasidfol ui")
 
+function chat(s)
+    chatBox.sendMessage(s, "autocrafter")
+end
+
+
 function errorChat(s)
     chatBox.sendMessage(s, "autocrafter")
     error(s)
@@ -337,8 +342,10 @@ end
 
 function main()
 
+    chat("waiting for high on right")
     while true do
         if rs.getInput("right") == true then
+            chat("got high on right")
             break
         end
         sleep(0.1)
@@ -346,11 +353,15 @@ function main()
 
     rs.setOutput("right", true)
     
-    checkSendWait()
-    craft()
+    --checkSendWait()
+    --craft()
+
+    chat("sleeping")
+    sleep(5)
+    chat("done sleeping")
     
     rs.setOutput("right", false)
-    sleepTick()
+    sleep(0.4)
 
 end
 
