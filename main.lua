@@ -232,6 +232,7 @@ end
 
 while true do 
     main()
+    break
 end
 
 
