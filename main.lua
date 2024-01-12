@@ -196,7 +196,7 @@ checkSlotIDs = {{1,10,19},{2,11,20},{3,12,21}}
 function trigDeployer(piston) -- trigs the deployer (assuming ones currently there)
     piston:set()
     deployerTrigger:pulse()
-    sleep(0.2) -- is this a good amount of time?
+    sleep(0.1) -- is this a good amount of time?
     piston:reset()
 end
 
@@ -212,7 +212,7 @@ function getItem(slot)
 
     funnel:pulse()
 
-    sleep(0.3)
+    sleep(0.5)
 
     local res = recipeBuffer:getItemDetail(1)
 
