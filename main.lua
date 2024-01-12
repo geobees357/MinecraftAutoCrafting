@@ -204,9 +204,7 @@ end
 function gridContents()
     local newItems = {{"","",""},{"","",""},{"","",""}}
     for i=1,9 do 
-        newItems[math.ceil(i/3)][(i%3) + 1] = recipeChest:getItemDetail(checkSlotIDs[i])
-        print(math.ceil(i/3))
-        print(i%3)
+        newItems[math.ceil(i/3) - 1][(i%3) + 1] = recipeChest:getItemDetail(checkSlotIDs[i])
     end
     return newItems
 end
@@ -215,9 +213,7 @@ function constructTable(list)
     local nList = {{false,false,false},{false,false,false},{false,false,false}}
     for i=1,9 do
         if list[i] == nil then
-            nList[math.ceil(i/3)][(i%3) + 1] = true
-            print(math.ceil(i/3))
-            print(i%3)
+            nList[math.ceil(i/3) - 1][(i%3) + 1] = true
         end
     end
     return nList
