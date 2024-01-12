@@ -77,6 +77,8 @@ function Integrator:new(device, side, defaultVal)
     -- define vars
     self.device = peripheral.wrap(device)
     
+    self.deviceName = device
+
     assert(self.device ~= nil, "the fucking integrator be null du,basdfhsujifksdghasidfol ui " .. device)
 
     self.side = side 
@@ -105,6 +107,9 @@ function Container:pushItem(other, from, to)
 end
 
 function Container:getItemDetail(slot)
+    
+    print(self.deviceName)
+
     local temp = self.device.getItemDetail(slot)
     
     if temp then
