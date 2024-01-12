@@ -173,7 +173,8 @@ modem = peripheral.wrap("top")
 channel = 5
 modem.open(channel)
 
-checkSlotIDs = {{1,2,3},{10,11,12},{19,20,21}}
+--checkSlotIDs = {{1,2,3},{10,11,12},{19,20,21}}
+checkSlotIDs = {{1,10,19},{2,11,20},{3,12,21}}
 
 function trigDeployer(piston) -- trigs the deployer (assuming ones currently there)
     piston:set()
@@ -188,6 +189,7 @@ function getItem(slot)
 
     trigDeployer(usePiston) 
 
+    deployerTrigger
 
     trigDeployer(attackPiston)
 
@@ -209,7 +211,7 @@ function gridContents()
     local newItems = {{"","",""},{"","",""},{"","",""}}
     for i=1,3 do 
         for e=1,3 do
-            newItems[e][i] = recipeChest:getItemDetail(checkSlotIDs[i][e])
+            newItems[i][e] = recipeChest:getItemDetail(checkSlotIDs[i][e])
         end
     end
     return newItems
@@ -219,8 +221,8 @@ function constructTable(list)
     local nList = {{false,false,false},{false,false,false},{false,false,false}}
     for i=1,3 do
         for e=1,3 do
-            if list[e][i] == nil then
-                nList[e][i] = true
+            if list[i][e] == nil then
+                nList[i][e] = true
             end
         end
     end
