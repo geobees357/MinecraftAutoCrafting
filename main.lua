@@ -34,10 +34,12 @@ function Integrator:set(val)
 
 
     if val then
-        self.peripheral.setOutput(self.side, val)
+        self.device.setOutput(self.side, val)
     else
         self.device.setOutput(self.side, true)
     end
+
+
     sleepTick()
 end
 
@@ -82,7 +84,7 @@ function Integrator:new(device, side, defaultVal)
 
     -- setup
     if defaultVal then
-        self.set(self.defaultVal)
+        self:set(self.defaultVal)
     end
 
     return obj
