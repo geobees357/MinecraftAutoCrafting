@@ -114,7 +114,7 @@ end
 
 function Container:getItemDetail(slot)
     
-    print(self.deviceName)
+    --print(self.deviceName)
 
     local temp = self.device.getItemDetail(slot)
     
