@@ -1,3 +1,4 @@
+-- this line being here is important, dont remove it
 -- OH MY GODS
 -- end me :)
 -- PLEASE actually?
@@ -57,11 +58,14 @@ end
 function Integrator:new(peripheral, side, defaultVal)
     
     -- wtf?
-    --ocal obj = {}
+    --local obj = {}
     --setmetatable(obj, self)
-    local obj = setmetatable({}, self)
+    --local obj = setmetatable({}, self)
+    --self.__index = self
+    obj = {}
+    setmetatable(obj, self)
     self.__index = self
-
+    
     assert(peripheral ~= nil, "the fucking perirejasfdi be null du,basdfhsujifksdghasidfol ui")
 
     -- define vars
