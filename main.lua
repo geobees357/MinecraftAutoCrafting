@@ -137,10 +137,10 @@ modem.open(channel)
 checkSlotIDs = {1,2,3,10,11,12,19,20,21}
 
 function trigDeployer(piston) -- trigs the deployer (assuming ones currently there)
-    piston.set()
-    deployerTrigger.pulse()
+    piston:set()
+    deployerTrigger:pulse()
     sleep(3) -- is this a good amount of time?
-    piston.reset()
+    piston:reset()
 end
 
 function doAttack() -- does a round of the attack deployer
@@ -165,7 +165,7 @@ end
 function gridContents()
     local newItems = {{"","",""},{"","",""},{"","",""}}
     for i=1,9 do 
-        newItems[math.ceil(i/3)][i%3] = recipeChest.getItemDetail(checkSlotIDs[i])
+        newItems[math.ceil(i/3)][i%3] = recipeChest:getItemDetail(checkSlotIDs[i])
     end
     return newItems
 end
