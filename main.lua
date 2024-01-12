@@ -110,6 +110,7 @@ end
 
 function Container:pushItem(other, from, to)
     self.device.pushItems(peripheral.getName(other.device), from, 64, to)
+    sleepTick(2)
 end
 
 function Container:getItemDetail(slot)
@@ -149,6 +150,17 @@ function Container:new(device)
     return self
 end
 
+-- chatbox
+
+chatBox = peripheral.wrap("chatBox_0")
+assert(chatBox ~= nil, "the fucking chatBox_0 be null du,basdfhsujifksdghasidfol ui")
+
+function errorChat(s)
+    chatBox.sendMessage("s", "autocrafter")
+    error(s)
+end
+
+
 -- integrators
 
 attackPiston = Integrator:new("redstoneIntegrator_11", "back", false) -- piston for the attack deployer
@@ -162,10 +174,13 @@ outputBufferSend = Integrator:new("redstoneIntegrator_8", "front", true) -- trig
 -- containers
 
 recipeChest = Container:new("minecraft:barrel_2")
-outputBuffer = Container:new("minecraft:barrel_1")
+recipeBuffer = Container:new("minecraft:barrel_1")
 
 returnHopper = Container:new("minecraft:hopper_0")
 giveHopper = Container:new("minecraft:hopper_1")
+
+outputBuffer = Container:new("minecraft:barrel_3")
+outputChest = Container:new("ironchest:diamond_chest_0")
 
 -- init
 
@@ -173,13 +188,15 @@ modem = peripheral.wrap("top")
 channel = 5
 modem.open(channel)
 
+errorChat("sdwm")
+
 --checkSlotIDs = {{1,2,3},{10,11,12},{19,20,21}}
 checkSlotIDs = {{1,10,19},{2,11,20},{3,12,21}}
 
 function trigDeployer(piston) -- trigs the deployer (assuming ones currently there)
     piston:set()
     deployerTrigger:pulse()
-    sleep(3) -- is this a good amount of time?
+    sleep(1) -- is this a good amount of time?
     piston:reset()
 end
 
@@ -187,6 +204,13 @@ function getItem(slot)
 
     -- todo, grab item from recipe chest, put in givehopper
 
+    
+    if recipeChest:getItemDetail(slot) == nil then
+        return
+    end
+    
+    recipeChest:pushItem(giveHopper, slot, 1)
+    
     trigDeployer(usePiston) 
 
     
@@ -197,6 +221,20 @@ function getItem(slot)
     trigDeployer(attackPiston)
 
     -- todo, verify that item was returned in return hopper, move back to recipe chest
+
+end
+
+function craft() 
+    
+    for y=1,3 do
+        for x=1,3 do
+            getItem(checkSlotIDs[x][y])
+        end
+    end
+
+    -- crafting will just,,, occur over here automatically??
+
+    sleep(3)
 
 end
 
