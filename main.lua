@@ -131,6 +131,8 @@ function Container:new(device)
     setmetatable(obj, self)
     self.__index = self
 
+    self.deviceName = device
+
     -- define vars
     self.device = peripheral.wrap(device)
     assert(self.device ~= nil, "the fucking contiainer be null du,basdfhsujifksdghasidfol ui " .. device)
