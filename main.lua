@@ -27,6 +27,7 @@ end
 Integrator = {}
 
 function Integrator:set(val)
+    print("self:", self)
     print("Debug: peripheral =", self.peripheral, "side =", self.side)
     --assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
     if val then
