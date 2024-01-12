@@ -34,14 +34,10 @@ function Integrator:set(val)
     --print("self:", self)
     --print("self.device:", self.device)
 
+    val = val or true
 
-    if val then
-        self.device.setOutput(self.side, val)
-    else
-        self.device.setOutput(self.side, true)
-    end
-
-
+    self.device.setOutput(self.side, val)
+    
     sleepTick()
 end
 
