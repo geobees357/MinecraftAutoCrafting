@@ -156,7 +156,7 @@ chatBox = peripheral.wrap("chatBox_0")
 assert(chatBox ~= nil, "the fucking chatBox_0 be null du,basdfhsujifksdghasidfol ui")
 
 function errorChat(s)
-    chatBox.sendMessage("s", "autocrafter")
+    chatBox.sendMessage(s, "autocrafter")
     error(s)
 end
 
@@ -169,7 +169,7 @@ usePiston = Integrator:new("redstoneIntegrator_7", "back", false) -- piston for 
 deployerTrigger = Integrator:new("redstoneIntegrator_10", "bottom", true) -- redstone for triging the deployer
 
 funnel = Integrator:new("redstoneIntegrator_9", "bottom", false)  -- trigs the funnel
-outputBufferSend = Integrator:new("redstoneIntegrator_8", "front", true) -- trig the sending of item from output buffer
+recipeBufferSend = Integrator:new("redstoneIntegrator_8", "front", true) -- trig the sending of item from output buffer
 
 -- containers
 
@@ -188,7 +188,7 @@ modem = peripheral.wrap("top")
 channel = 5
 modem.open(channel)
 
-errorChat("sdwm")
+--errorChat("sdwm")
 
 --checkSlotIDs = {{1,2,3},{10,11,12},{19,20,21}}
 checkSlotIDs = {{1,10,19},{2,11,20},{3,12,21}}
@@ -202,9 +202,6 @@ end
 
 function getItem(slot)
 
-    -- todo, grab item from recipe chest, put in givehopper
-
-    
     if recipeChest:getItemDetail(slot) == nil then
         return
     end
@@ -213,14 +210,31 @@ function getItem(slot)
     
     trigDeployer(usePiston) 
 
-    
     funnel:pulse()
-    -- todo, verify that item was actually gotten in the outputbuffer chest, if not do a while loop(maybe do a chat announce?)
 
+    sleep(0.5)
+
+    local res = recipeBuffer:getItemDetail(1)
+
+    if res == nil then
+        errorChat("funnel was unable to get an item! fric!")
+    end
+
+    recipeBufferSend:pulse()
 
     trigDeployer(attackPiston)
 
-    -- todo, verify that item was returned in return hopper, move back to recipe chest
+    sleep(0.1)
+
+    local res = returnHopper:getItemDetail(1)
+
+    if res == nil then
+        errorChat("returnHopper unable to get an item! fric!")
+    end
+
+    returnHopper:pushItem(recipeChest, 1, slot)
+
+    sleep(0.1)
 
 end
 
