@@ -182,17 +182,16 @@ function trigDeployer(piston) -- trigs the deployer (assuming ones currently the
     piston:reset()
 end
 
-function doAttack() -- does a round of the attack deployer
-    trigDeployer(attackPiston)
-end
-
-function doUse() -- does a round of the use deployer
-    trigDeployer(usePiston) 
-end
-
 function getItem(slot)
 
+    -- todo, grab item from recipe chest, put in givehopper
 
+    trigDeployer(usePiston) 
+
+
+    trigDeployer(attackPiston)
+
+    
 end
 
 function transmitMessage(message)
@@ -210,7 +209,7 @@ function gridContents()
     local newItems = {{"","",""},{"","",""},{"","",""}}
     for i=1,3 do 
         for e=1,3 do
-            newItems[i][e] = recipeChest:getItemDetail(checkSlotIDs[i][e])
+            newItems[e][i] = recipeChest:getItemDetail(checkSlotIDs[i][e])
         end
     end
     return newItems
@@ -220,8 +219,8 @@ function constructTable(list)
     local nList = {{false,false,false},{false,false,false},{false,false,false}}
     for i=1,3 do
         for e=1,3 do
-            if list[i][e] == nil then
-                nList[i][e] = true
+            if list[e][i] == nil then
+                nList[e][i] = true
             end
         end
     end
