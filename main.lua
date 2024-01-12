@@ -1,4 +1,5 @@
 -- this line being here is important, dont remove it
+-- this line aswell
 -- OH MY GODS
 -- end me :)
 -- PLEASE actually?
@@ -65,7 +66,7 @@ function Integrator:new(peripheral, side, defaultVal)
     obj = {}
     setmetatable(obj, self)
     self.__index = self
-    
+
     assert(peripheral ~= nil, "the fucking perirejasfdi be null du,basdfhsujifksdghasidfol ui")
 
     -- define vars
