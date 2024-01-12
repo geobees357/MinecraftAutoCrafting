@@ -62,6 +62,8 @@ function Integrator:new(peripheral, side, defaultVal)
     local obj = setmetatable({}, self)
     self.__index = self
 
+    assert(peripheral ~= nil, "the fucking perirejasfdi be null du,basdfhsujifksdghasidfol ui")
+
     -- define vars
     self.peripheral = peripheral
     self.side = side 
@@ -107,7 +109,7 @@ function Container:new(peripheral)
     local obj = setmetatable({}, self)
     self.__index = self
 
-    assert(peripheral ~= nil, "the fucking perirejasfdi be null du,basdfhsujifksdghasidfol ui")
+    assert(peripheral ~= nil, "the fucking contiainer be null du,basdfhsujifksdghasidfol ui")
 
     -- define vars
     self.peripheral = peripheral
