@@ -189,9 +189,13 @@ function getItem(slot)
 
     trigDeployer(usePiston) 
 
-    deployerTrigger
+    funnel:pulse()
 
     trigDeployer(attackPiston)
+
+    -- todo, verify that item was returned in return hopper, move back to recipe chest
+
+    -- todo, verify that item was actually gotten
 
     
 end
