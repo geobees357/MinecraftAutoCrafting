@@ -162,8 +162,8 @@ end
 
 -- lamp
 
-lampWrite = Integrator:new("right", "right", false)
-lampRead = Integrator:new("right", "right", nil)
+--lampWrite = Integrator:new("right", "right", false)
+--lampRead = Integrator:new("right", "right", nil)
 
 -- integrators
 
@@ -337,23 +337,19 @@ end
 
 function main()
 
-    local lampStatus = lampRead.get()
-
-    assert(lampStatus ~= nil, "lampstatus was nill?? asdhjfklhsjfshlaf")
-
-    if lampStatus == false then
-        while true do
-            os.pullEvent("redstone")
-            if rs.getInput("right") then
-                break
-            end
+    while true do
+        if rs.getInput("right") == true then
+            break
         end
+        sleep(0.1)
     end
 
-    lampWrite.set()
+    rs.setOutput("right", true)
+    
     checkSendWait()
     craft()
-    lampWrite.reset()
+    
+    rs.setOutput("right", false)
     sleepTick()
 
 end
@@ -363,6 +359,7 @@ while true do
 
     if not success then
         print("FUCK: " .. error_message)
+        errorChat("FUCK: " .. error_message)
     end
 end
 
