@@ -31,7 +31,7 @@ function Integrator:set(val)
     if val then
         self.peripheral.setOutput(self.side, val)
     else
-        self.peripheral.setOutput(self.side, true)
+        self:peripheral.setOutput(self.side, true)
     end
     sleepTick()
 end
