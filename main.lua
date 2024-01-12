@@ -342,14 +342,17 @@ function checkSendWait()
     print(checkForMessageEvent())
 end
 
-rs.setOutput("right", false)
+--rs.setOutput("right", false)
 
 function main()
 
-    chat("waiting for high on right")
+    rs.setOutput("right", false)
+    sleep(0.4)
+
+    --chat("waiting for high on right")
     while true do
         if rs.getInput("right") == true then
-            chat("got high on right")        
+            --chat("got high on right")        
             break
         end
         sleep(0.1)
@@ -357,14 +360,14 @@ function main()
 
     rs.setOutput("right", true)
     
-    --checkSendWait()
-    --craft()
+    checkSendWait()
+    craft()
 
-    chat("sleeping1")
-    chat("sleeping2")
-    chat("sleeping3")
+    --chat("sleeping1")
+    --chat("sleeping2")
+    --chat("sleeping3")
     sleep(5)
-    chat("done sleeping")
+    --chat("done sleeping")
     
     rs.setOutput("right", false)
     sleep(0.4)
