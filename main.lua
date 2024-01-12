@@ -220,7 +220,22 @@ function constructTable(list)
 end
 
 function checkSendWait()
-    transmitMessage(constructTable(gridContents()))
+
+    local temp = constructTable(gridContents())
+
+    print("transmitting:")
+
+    for y=1,3 do
+        for x=1,3 do
+            if temp[x][y] then
+                write(string.char(8))
+            else
+                write("_")
+            end
+        write("\n")
+    end
+
+    transmitMessage(temp)
     print(checkForMessageEvent())
 end
 
