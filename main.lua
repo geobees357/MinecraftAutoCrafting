@@ -342,6 +342,8 @@ function checkSendWait()
     print(checkForMessageEvent())
 end
 
+rs.setOutput("right", false)
+
 function main()
 
     chat("waiting for high on right")
