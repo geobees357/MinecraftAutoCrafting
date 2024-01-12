@@ -122,11 +122,9 @@ function Container:new(device)
     local obj = setmetatable({}, self)
     self.__index = self
 
-    
-
     -- define vars
     self.device = peripheral.wrap(device)
-    assert(device ~= nil, "the fucking contiainer be null du,basdfhsujifksdghasidfol ui " .. device)
+    assert(self.device ~= nil, "the fucking contiainer be null du,basdfhsujifksdghasidfol ui " .. device)
     self.size = self.device.size()
 
     return obj
