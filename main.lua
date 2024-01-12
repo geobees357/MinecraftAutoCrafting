@@ -189,15 +189,15 @@ function getItem(slot)
 
     trigDeployer(usePiston) 
 
+    
     funnel:pulse()
+    -- todo, verify that item was actually gotten in the outputbuffer chest, if not do a while loop(maybe do a chat announce?)
+
 
     trigDeployer(attackPiston)
 
     -- todo, verify that item was returned in return hopper, move back to recipe chest
 
-    -- todo, verify that item was actually gotten
-
-    
 end
 
 function transmitMessage(message)
@@ -257,6 +257,10 @@ end
 function main()
 
     checkSendWait()
+
+
+    trigDeployer(usePiston) 
+
 
 end
 
