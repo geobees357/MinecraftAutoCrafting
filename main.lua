@@ -250,6 +250,14 @@ function craft()
 
     sleep(3)
 
+    local res = outputBuffer:getItemDetail(1)
+
+    if res == nil then
+        errorChat("craft failed somehow? fric!")
+    end
+
+    outputBuffer:pushItem(outputChest, 1)
+    
 end
 
 function transmitMessage(message)
@@ -311,7 +319,7 @@ function main()
     checkSendWait()
 
 
-    trigDeployer(usePiston) 
+    craft()
 
 
 end
