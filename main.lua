@@ -34,17 +34,20 @@ function Integrator:set(val)
     --print("self:", self)
     --print("self.device:", self.device)
 
-    val = val or true
+    if val == nil then
+        val = true
+    end
 
     self.device.setOutput(self.side, val)
-    
+
     sleepTick()
 end
 
 function Integrator:reset()
     --assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
-    self.device.setOutput(self.side, false)
-    sleepTick()
+    --self.device.setOutput(self.side, false)
+    --sleepTick()
+    self:set(false)
 end
 
 function Integrator:pulse()
