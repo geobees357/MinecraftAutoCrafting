@@ -70,7 +70,7 @@ function Integrator:new(device, side, defaultVal)
     -- define vars
     self.device = peripheral.wrap(device)
     
-    assert(self.device ~= nil, "the fucking perirejasfdi be null du,basdfhsujifksdghasidfol ui")
+    assert(self.device ~= nil, "the fucking integrator be null du,basdfhsujifksdghasidfol ui " .. device)
 
     self.side = side 
     self.defaultVal = defaultVal
@@ -119,7 +119,7 @@ function Container:new(device)
 
     -- define vars
     self.device = peripheral.wrap(device)
-    assert(device ~= nil, "the fucking contiainer be null du,basdfhsujifksdghasidfol ui")
+    assert(device ~= nil, "the fucking contiainer be null du,basdfhsujifksdghasidfol ui " .. device)
     self.size = self.device.size()
 
     return obj
@@ -127,7 +127,7 @@ end
 
 -- integrators
 
-attackPiston = Integrator:new("redstoneIntegrator_11"), "back", false) -- piston for the attack deployer
+attackPiston = Integrator:new("redstoneIntegrator_11", "back", false) -- piston for the attack deployer
 usePiston = Integrator:new("redstoneIntegrator_7", "back", false) -- piston for the use deployer
 
 deployerTrigger = Integrator:new("redstoneIntegrator_10", "bottom", true) -- redstone for triging the deployer
