@@ -265,7 +265,12 @@ function main()
 end
 
 while true do 
-    main()
+    local success, error_message = xpcall(main, debug.traceback)
+
+    if not success then
+        print("FUCK: " .. error_message)
+    end
+
     break
 end
 
