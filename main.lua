@@ -173,7 +173,7 @@ modem = peripheral.wrap("top")
 channel = 5
 modem.open(channel)
 
-checkSlotIDs = {1,2,3,10,11,12,19,20,21}
+checkSlotIDs = {{1,2,3},{10,11,12},{19,20,21}}
 
 function trigDeployer(piston) -- trigs the deployer (assuming ones currently there)
     piston:set()
@@ -190,9 +190,14 @@ function doUse() -- does a round of the use deployer
     trigDeployer(usePiston) 
 end
 
+function getItem(slot)
+
+
+end
+
 function transmitMessage(message)
     modem.transmit(channel, channel, message)
-end
+end  
 
 function checkForMessageEvent()
     local event, side, recivedChannel, requestChannel, message, distance = os.pullEvent("modem_message")
@@ -203,18 +208,21 @@ end
 --check items in choosen slots 
 function gridContents()
     local newItems = {{"","",""},{"","",""},{"","",""}}
-    for i=1,9 do 
-        newItems[math.ceil(i/3)][(i%3) + 1] = recipeChest:getItemDetail(checkSlotIDs[i])
+    for i=1,3 do 
+        for e=1,3 do
+            newItems[i][e] = recipeChest:getItemDetail(checkSlotIDs[i][e])
+        end
     end
-    print(pairs(checkSlotIDs), newItems)
     return newItems
 end
 
 function constructTable(list)
     local nList = {{false,false,false},{false,false,false},{false,false,false}}
-    for i=1,9 do
-        if list[i] == nil then
-            nList[math.ceil(i/3)][(i%3) + 1] = true
+    for i=1,3 do
+        for e=1,3 do
+            if list[i][e] == nil then
+                nList[i][e] = true
+            end
         end
     end
     return nList
