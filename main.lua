@@ -204,7 +204,7 @@ end
 function gridContents()
     local newItems = {{"","",""},{"","",""},{"","",""}}
     for i=1,9 do 
-        newItems[math.ceil(i/3)[(i%3) + 1] = recipeChest:getItemDetail(checkSlotIDs[i])
+        newItems[math.ceil(i/3)][(i%3) + 1] = recipeChest:getItemDetail(checkSlotIDs[i])
     end
     return newItems
 end
