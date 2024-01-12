@@ -25,11 +25,9 @@ end
 Integrator = {}
 
 function Integrator:set(val)
-
-
     --assert(self.defaultVal ~= nil, "defaultVal was nil, and shouldnt be for a input integrator!")
     if val then
-        self.peripheral.setOutput(self.side, val)
+        self:peripheral.setOutput(self.side, val)
     else
         self.peripheral.setOutput(self.side, true)
     end
